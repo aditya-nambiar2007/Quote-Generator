@@ -11,11 +11,10 @@
 <body bgcolor="black">
     <div style="border: none;">
         <img src="" alt=" Enter The Image Source Below" id="img" width="200" height="200">
-        <input type="text" id="src" placeholder="Image Source" oninput="$id('img').src=this.value">
-        <textarea id="quote" cols="20" rows="10" placeholder="Quote"></textarea>
+        <input type="text" id="src" placeholder="Image Source URL" oninput="$id('img').src=this.value;quote()">
+        <textarea id="quote" cols="20" rows="10" placeholder="Quote" oninput="quote()"></textarea>
         <div style="display: flex;  flex-direction: row;  justify-content: space-between; padding: 0;border: none;">
-            <input type="text" id="personality" placeholder="Personality" style="margin-bottom: 0;">
-            <button id="genq" style="margin-bottom: 0;">Generate Quote</button>
+            <input type="text" id="personality" placeholder="Personality" style="margin-bottom: 0;width: 90%;" oninput="quote()">
             <button id="download" style="margin-bottom: 0;" onclick="download()">Download</button>
         </div>
         <canvas width="3000" height="1000" id="canvas"></canvas>
@@ -25,7 +24,7 @@
         let ctx = $id("canvas").getContext("2d")
         ctx.fillStyle = "black"
         ctx.fillRect(0, 0, 3000, 1000)
-        $id("genq").onclick = e => {
+        let quote= e => {
             ctx.fillStyle = "black"
             ctx.fillRect(0, 0, 3000, 1000)
 
@@ -36,7 +35,7 @@
             let lines = text.split("\n")
             for (let i = 0; i < lines.length; i++) {
                 const c = i == lines.length - 1 ? 50 : 0
-                ctx.fillText(text.split("\n")[i], 1050, 200 + i * 110 + c, 1500)
+                ctx.fillText(text.split("\n")[i], 1050, 200 + i * 110 + c, 1700)
             }
         }
         let download = function () {
