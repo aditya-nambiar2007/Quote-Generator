@@ -10,11 +10,15 @@
 
 <body bgcolor="black">
     <div style="border: none;">
-        <img src="" alt=" Enter The Image Source Below" id="img" width="200" height="200" crossorigin="anonymous">
+        <div style="display: flex;  flex-direction: row;  justify-content: space-between; padding: 0;border: none;">
+            <img src="" alt=" Enter The Image Source Below" id="img" width="200" height="200" crossorigin="anonymous">
+            <input type="file" accept="image/png, image/jpg, image/jpeg" id="file">
+        </div>
         <input type="text" id="src" placeholder="Image Source URL" oninput="$id('img').src=this.value;quote()">
         <textarea id="quote" cols="20" rows="10" placeholder="Quote" oninput="quote()"></textarea>
         <div style="display: flex;  flex-direction: row;  justify-content: space-between; padding: 0;border: none;">
-            <input type="text" id="personality" placeholder="Personality" style="margin-bottom: 0;width: 90%;" oninput="quote()">
+            <input type="text" id="personality" placeholder="Personality" style="margin-bottom: 0;width: 90%;"
+                oninput="quote()">
             <button id="download" style="margin-bottom: 0;" onclick="download()">Download</button>
         </div>
         <canvas width="3000" height="1000" id="canvas"></canvas>
@@ -24,7 +28,7 @@
         let ctx = $id("canvas").getContext("2d")
         ctx.fillStyle = "black"
         ctx.fillRect(0, 0, 3000, 1000)
-        let quote= e => {
+        let quote = e => {
             ctx.fillStyle = "black"
             ctx.fillRect(0, 0, 3000, 1000)
 
@@ -45,6 +49,16 @@
             link.click();
             link.remove()
         }
+        
+        $id('file').addEventListener('change', (event) => {
+            const imageFile = event.target.files[0];
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.readAsDataURL(imageFile);
+                reader.onload=()=>$id("img").src=reader.result;
+            }
+            quote()
+        });
     </script>
     <style>
         html,
