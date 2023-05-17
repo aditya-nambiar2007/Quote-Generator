@@ -27,10 +27,12 @@
             oninput="quote()">
             <button id="download" style="margin-bottom: 0;" onclick="download()">Download</button>
         </div>
+        
         <div style="display: flex;  flex-direction: row;  justify-content: space-between; padding: 0;border: none;">
         <select id="font-style" style="text-align: center; width: 20%;" oninput="quote()"><option value="normal">normal</option><option value="italic">italic</option><option value="oblique">oblique</option></select>    
         <select id="font-weight" style="text-align: center; width: 20%;" oninput="quote()"><option value="normal">normal</option><option value="bold">bold</option><option value="bolder">bolder</option><option value="lighter">lighter</option><option value="100">100</option><option value="200">200</option><option value="300">300</option><option value="400">400</option><option value="500">500</option><option value="600">600</option><option value="700">700</option><option value="800">800</option><option value="900">900</option>'</select>
         <input type="number" id="font-size" value="50" style="margin-bottom: 0;text-align: center; width: 20%;" oninput="quote()">
+        <select id="font-family" style="text-align: center; width: 20%;" oninput="quote()"><option value="Verdana">Verdana</option><option value="Georgia">Georgia</option><option value="Times New Roman">Times New Roman</option><option value="Arial">Arial</option><option value="Helvetica">Helvetica</option><option value="Arial Black">Arial Black</option><option value="Impact">Impact</option><option value="Lucida Sans Unicode">Lucida Sans Unicode</option><option value="Tahoma">Tahoma</option><option value="Courier New">Courier New</option><option value="Lucida Console">Lucida Console</option><option value="serif">serif</option><option value="sans-serif">sans-serif</option><option value="cursive">cursive</option><option value="fantasy">fantasy</option><option value="monospace">monospace</option>'</select>
         <select id="file-type" style="margin-bottom: 0;text-align: center;"><option value="png">PNG</option><option value="gif">GIF</option><option value="jpeg">JPEG</option><option value="jpg">JPG</option></select>
         </div>
         <canvas width="3000" height="1000" id="canvas"></canvas>
@@ -44,7 +46,7 @@
         let quote = e => {
             ctx.fillStyle = $id('bg').value
             ctx.fillRect(0, 0, 3000, 1000)
-            ctx.font = `${$id('font-style').value} normal ${$id('font-weight').value} ${$id('font-size').value}px arial`//+"px Arial"
+            ctx.font = `${$id('font-style').value} normal ${$id('font-weight').value} ${$id('font-size').value}px ${$id("font-family").value}`
             ctx.fillStyle = $id('txt').value
             ctx.drawImage($id("img"), 0, 0, 1000, 1000)
             let text = $id("quote").value + "\n~ " + $id("personality").value
