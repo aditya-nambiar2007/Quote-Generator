@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="ASCII">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encryptor</title>
 </head>
+
 <body>
     <div style="display: grid; "><textarea id="text" cols="30" rows="10"></textarea>
         <span style="display: flex; justify-content: space-between;">
-            <input inputmode="numeric" type="number" id="key" placeholder="KEY" maxlength="5" oninput="$('#text').oninput()">
+            <input inputmode="numeric" type="number" id="key" placeholder="KEY" maxlength="5"
+                oninput="$('#text').oninput()">
             <select id="enc-dec" oninput="$('#text').oninput()">
                 <option value="1">Encrypt</option>
                 <option value="-1">Decrypt</option>
             </select>
+            <button onclick="$('#text').value=''">CLEAR</button>
         </span>
         <BUTTON onclick="copy()"><b>COPY ENCRYPTED / DECRYPTED TEXT</b></BUTTON>
     </div>
     <div style="display: grid; width: 100%;">
-        <div style="padding: 5px; width: 98vw;"></div>
+        <div style="padding: 5px; width: 98vw;word-wrap: break-word;overflow-wrap: break-word;"></div>
     </div>
     <textarea id="txt" cols="30" rows="10" hidden></textarea>
     <script>
@@ -29,11 +33,11 @@
             let string = ''
             for (let i = 0; i < str.length; i++) { string += String.fromCharCode(str.charCodeAt(i) + x * parseInt($('select').value)) }
             $('div', 2).textContent = string
-            $('#txt').value=string
+            $('#txt').value = string
         }
         function copy() {
             $('#txt').select();
-            $('#txt').setSelectionRange(0, 99999); 
+            $('#txt').setSelectionRange(0, 99999);
             navigator.clipboard.writeText($('#txt').value);
             alert("Copied the text");
         }
@@ -57,6 +61,13 @@
 
         * {
             font-size: 2.5vh;
+        }
+
+        button {
+            color: black;
+            background-color: rgb(220, 220, 220);
+            border: 1px solid black;
+            border-radius: .5vmax;
         }
     </style>
 </body>
